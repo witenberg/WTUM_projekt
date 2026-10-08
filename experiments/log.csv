@@ -1,0 +1,5 @@
+date,experiment_id,path,process_step,model,train_samples,val_accuracy,val_macro_f1,train_time_s,energy_kwh,co2_g,model_size_kb,latency_ms,notes
+2026-10-04,explore-A-R0,A keypoints,path exploration,reguła kątów w stawach,0,0.7549,0.6749,0,0,0,0,,"kąty w stawach 2D > 150 st., bez treningu"
+2026-10-04,explore-A-M1,A keypoints,path exploration,regresja logistyczna,612590,0.8053,0.8545,44.9,0.000363,0.24,3.1,0.119,"landmarki wycentrowane na nadgarstku, przeskalowane do koła jednostkowego, domyślne hiperparametry"
+2026-10-04,explore-A-M2,A keypoints,path exploration,drzewa gradient boosting,612590,0.989,0.9876,26.4,0.000477,0.316,1143.5,14.463,"landmarki wycentrowane na nadgarstku, przeskalowane do koła jednostkowego, domyślne hiperparametry"
+2026-10-04,explore-A-M3,A keypoints,path exploration,MLP 128-64,612590,0.9937,0.9929,27.0,0.000259,0.172,175.0,0.146,"landmarki wycentrowane na nadgarstku, przeskalowane do koła jednostkowego, domyślne hiperparametry"

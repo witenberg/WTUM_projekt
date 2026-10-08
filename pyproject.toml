@@ -1,0 +1,27 @@
+[project]
+name = "wtum-finger-count"
+version = "0.1.0"
+description = "Real-time finger counting on Android (WTUM course project)"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+    "numpy",
+    "pandas",
+    "pyarrow",
+    "matplotlib",
+    "seaborn",
+    "pillow",
+    "scikit-learn",
+    "torch",
+    "torchvision",
+    "timm",
+    "codecarbon",
+    "remotezip",
+    "tqdm",
+    "jupyterlab",
+    "ipykernel",
+    "nbconvert",
+    "mediapipe",
+    "opencv-python-headless",
+    "truststore>=0.10.4",
+    "jupytext>=1.19.5",
+]

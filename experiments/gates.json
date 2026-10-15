@@ -1,0 +1,54 @@
+{
+  "baseline": {
+    "experiment_id": "B0",
+    "preprocess": "raw",
+    "augment": null,
+    "model": {
+      "hidden_layer_sizes": [
+        128,
+        64
+      ]
+    }
+  },
+  "preprocessing": {
+    "experiment_id": "P1",
+    "preprocess": "wrist_scale"
+  },
+  "augmentation": {
+    "experiment_id": "A1",
+    "preprocess": "wrist_scale",
+    "augment_copies": 1
+  },
+  "tuning": {
+    "experiment_id": "A1",
+    "preprocess": "wrist_scale",
+    "augment_copies": 1,
+    "params": {
+      "hidden_layer_sizes": [
+        128,
+        64
+      ],
+      "alpha": 0.0001,
+      "learning_rate_init": 0.001,
+      "batch_size": 200
+    }
+  },
+  "final": {
+    "experiment_id": "A1",
+    "preprocess": "wrist_scale",
+    "augment_copies": 1,
+    "params": {
+      "hidden_layer_sizes": [
+        128,
+        64
+      ],
+      "alpha": 0.0001,
+      "learning_rate_init": 0.001,
+      "batch_size": 200
+    },
+    "test_macro_f1": 0.9942889371813476,
+    "test_stress_macro_f1": 0.9903399029073113,
+    "model_size_kb": 175.2373046875,
+    "latency_ms_sklearn": 0.14029149990528822
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "model_file": "finger_counter.onnx",
+  "input_name": "X",
+  "input_shape": [
+    1,
+    42
+  ],
+  "input_dtype": "float32",
+  "outputs": {
+    "label": [
+      null
+    ],
+    "probabilities": [
+      null,
+      6
+    ]
+  },
+  "classes": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "preprocess": "wrist_scale",
+  "feature_order": "x0, y0, x1, y1, ..., x20, y20 (punkty MediaPipe, przeplecione)",
+  "test_macro_f1": 0.9942889371813476,
+  "test_stress_macro_f1": 0.9903399029073113
+}

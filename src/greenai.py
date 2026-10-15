@@ -8,8 +8,9 @@ from pathlib import Path
 from codecarbon import OfflineEmissionsTracker
 
 LOG = Path(__file__).resolve().parents[1] / "experiments/log.csv"
-FIELDS = ["date", "experiment_id", "path", "process_step", "model", "train_samples", "val_accuracy", "val_macro_f1",
-          "train_time_s", "energy_kwh", "co2_g", "model_size_kb", "latency_ms", "notes"]
+FIELDS = ["date", "experiment_id", "path", "process_step", "model", "train_samples", "seeds", "val_accuracy",
+          "val_macro_f1", "val_macro_f1_std", "val_stress_macro_f1", "val_stress_macro_f1_std", "train_time_s",
+          "energy_kwh", "co2_g", "model_size_kb", "latency_ms", "gate", "notes"]
 
 
 @contextmanager

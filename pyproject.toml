@@ -24,4 +24,7 @@ dependencies = [
     "opencv-python-headless",
     "truststore>=0.10.4",
     "jupytext>=1.19.5",
+    "skl2onnx>=1.20.0",
+    "onnxruntime>=1.31.0",
+    "shap>=0.53.0",
 ]

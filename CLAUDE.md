@@ -3,9 +3,13 @@
 University project for "Wdrażanie technik uczenia maszynowego" (WTUM), semester 7.
 Goal: train an image-classification ML model and deploy it on a smartphone.
 
-Status (2026-10-04): topic chosen, HaGRIDv2 annotations downloaded, EDA done (`notebooks/02_eda.ipynb`),
-keypoint path explored (`notebooks/03_path_keypoints.ipynb`, MLP on landmarks 0.993 val macro F1).
-No task split, we do everything ourselves. Experiment log: `experiments/log.csv`. Layout and reproduce steps: `README.md`.
+Status (2026-10-15): ML pipeline done, notebooks 01-10 cover diagram steps 1-10 plus the model export.
+Final model: wrist_scale preprocessing + 1 augmentation copy + MLP 128-64 with default params (tuning found nothing
+better). Test macro F1 0.9943, stress test 0.9903. ONNX model and Android brief in `deploy/`.
+Next: Android app (CameraX + MediaPipe Hand Landmarker + ONNX Runtime), then recording our own video for step 12.
+No task split, we do everything ourselves. Experiment log: `experiments/log.csv`, gate decisions:
+`experiments/gates.json`. Layout and reproduce steps: `README.md`.
+Gotcha: Python mediapipe 1.0.1 crashes on macOS (Metal graph service), 1.1.0 and 0.10.14 work.
 
 Data access: the work Mac's web filter (Mosyle) blocks the HaGRID server (`*.sbercloud.ru`) since 2026-10-04.
 Images must be downloaded on another network or machine. Do not try to bypass the filter.
@@ -14,7 +18,7 @@ Images must be downloaded on another network or machine. Do not try to bypass th
 
 Real-time finger counting. The phone camera sees a hand, the app shows how many fingers are extended right now.
 
-Dataset: HaGRID family (hand gesture images). Leaning towards HaGRIDv2, not final yet.
+Dataset: HaGRIDv2 (annotations with MediaPipe landmarks, no images needed for path A).
 Facts checked on github.com/hukenovs/hagrid on 2026-10-04:
 
 | | HaGRID v1 | HaGRIDv2 |
@@ -39,9 +43,7 @@ Draft class to count mapping (verify against sample images before using):
 - Probably drop two-hand and ambiguous ones (hand_heart, hand_heart2, holy, timeout, xsign, take_picture, grabbing, grip). no_gesture could become a "no hand / none" class.
 - Class 4 has only one source gesture. Expect imbalance, EDA must show it.
 
-Likely approach (not decided): first reduce the hand to keypoints (e.g. MediaPipe 21 landmarks), then classify the keypoints.
-Open question for later: the course diagram expects image preprocessing, image augmentation and xAI like Grad-CAM.
-A pure keypoint pipeline changes what those steps mean, so check it covers every requirement.
+Approach: see Decisions (path A, landmarks + MLP).
 
 Target grade: 5.0. Every decision must keep all requirements below satisfied, especially live inference.
 
@@ -53,6 +55,9 @@ Only code itself (identifiers, file names) is English. This overrides the global
 ## Decisions
 
 - Platform: Android smartphone.
+- Pipeline (2026-10-15): path A. MediaPipe finds hand landmarks, our small classifier (MLP) counts fingers from them.
+  The instructor confirmed a landmark pipeline satisfies the preprocessing / augmentation / xAI requirements.
+  Preprocessing and augmentation act on landmarks, xAI uses SHAP. No image download needed.
 - App: as simple as possible. One button opens the camera view, the model classifies frames in real time with the result overlaid.
   No extra screens or features. All effort goes into the ML process and its documentation.
 - Model must be small and fast enough for live on-device inference (pick architecture and export format with that in mind).

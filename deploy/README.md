@@ -12,11 +12,11 @@ Ten folder zawiera wszystko, czego aplikacja potrzebuje od strony ML. Pliki gene
 
 1. **CameraX** `ImageAnalysis` daje klatkę.
 2. **MediaPipe Hand Landmarker** (`com.google.mediapipe:tasks-vision`, model `hand_landmarker.task`,
-   tryb `LIVE_STREAM`, `numHands = 2`) zwraca 21 punktów na dłoń, `x` i `y` znormalizowane do szerokości
-   i wysokości obrazu.
-   Trzeba podać obrót klatki (`ImageProcessingOptions.setRotationDegrees(imageProxy.imageInfo.rotationDegrees)`).
-   Bez tego punkty są w układzie sensora, czyli obrócone o 90 stopni, a model zna tylko przechylenia do około
-   30-45 stopni.
+   `numHands = 2`) zwraca 21 punktów na dłoń, `x` i `y` znormalizowane do szerokości i wysokości obrazu.
+   Klatkę trzeba najpierw obrócić do pionu o `imageProxy.imageInfo.rotationDegrees`. Bez tego punkty są
+   w układzie sensora, czyli obrócone o 90 stopni, a model zna tylko przechylenia do około 30-45 stopni.
+   Aplikacja w `android/` obraca bitmapę sama i używa trybu `VIDEO` (synchronicznie), żeby osobno zmierzyć
+   czas MediaPipe i MLP na tej samej klatce.
 3. **Preprocessing** (`wrist_scale`), dokładnie jak w treningu:
    ```kotlin
    // lm: 21 par (x, y) z MediaPipe

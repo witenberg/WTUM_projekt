@@ -6,7 +6,8 @@ Goal: train an image-classification ML model and deploy it on a smartphone.
 Status (2026-10-15): ML pipeline done, notebooks 01-10 cover diagram steps 1-10 plus the model export.
 Final model: wrist_scale preprocessing + 1 augmentation copy + MLP 128-64 with default params (tuning found nothing
 better). Test macro F1 0.9943, stress test 0.9903. ONNX model and Android brief in `deploy/`.
-Next: Android app (CameraX + MediaPipe Hand Landmarker + ONNX Runtime), then recording our own video for step 12.
+Android app in `android/` builds (`android/install.sh`), parity test vs notebooks passes. Not yet tested on a phone.
+Next: install on a phone, check live results, then record our own video for step 12.
 No task split, we do everything ourselves. Experiment log: `experiments/log.csv`, gate decisions:
 `experiments/gates.json`. Layout and reproduce steps: `README.md`.
 Gotcha: Python mediapipe 1.0.1 crashes on macOS (Metal graph service), 1.1.0 and 0.10.14 work.

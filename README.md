@@ -18,6 +18,7 @@ Proces i wymagania kursu są w `CLAUDE.md` i `docs/proces_projektowy.png`.
 | `notebooks/09_xai.ipynb` | Krok 10. SHAP: które punkty dłoni decydują o liczbie palców, przykłady pomyłek |
 | `notebooks/10_export.ipynb` | Krok 11 (część ML). Eksport do ONNX, zgodność ze sklearn, wektory testowe dla aplikacji |
 | `deploy/` | Model ONNX, specyfikacja wejść i wyjść, wektory testowe i opis pipeline'u na Androidzie |
+| `android/` | Krok 11. Aplikacja (CameraX + MediaPipe + ONNX Runtime) i test zgodności z notebookami |
 | `experiments/gates.json` | Decyzje bramek. Każdy notebook czyta wynik poprzedniego kroku stąd |
 | `experiments/log.csv` | Jeden wiersz na eksperyment, metryki jakości i GreenAI. Źródło danych dla bramek procesu |
 | `reports/figures/` | Wykresy zapisane przez notebooki, gotowe do dokumentacji i slajdów |
@@ -35,6 +36,16 @@ unzip data/raw/annotations.zip -d data/raw
 uv run python src/build_annotations_table.py
 cd notebooks && uv run jupyter nbconvert --to notebook --execute --inplace 0*.ipynb 10_export.ipynb
 ```
+
+## Aplikacja na Androida
+
+```bash
+android/install.sh
+```
+
+Skrypt uruchamia test zgodności z `deploy/test_vectors.json`, buduje APK do `~/Downloads/LicznikPalcow.apk`
+i instaluje go na telefonie podpiętym po USB (z włączonym debugowaniem USB). Potrzebuje JDK 17 i Android SDK
+(`brew install openjdk@17 && brew install --cask android-commandlinetools`).
 
 Liczby GreenAI pochodzą z CodeCarbona w trybie offline, z intensywnością emisji polskiej sieci energetycznej.
 Na macOS bez `sudo` CodeCarbon szacuje moc CPU na podstawie TDP procesora, więc wartości energii to szacunki,

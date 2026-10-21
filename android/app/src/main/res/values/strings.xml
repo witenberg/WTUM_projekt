@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Licznik palców</string>
+    <string name="subtitle">Pokaż dłoń do kamery, aplikacja policzy wyprostowane palce.</string>
+    <string name="start">Uruchom kamerę</string>
+    <string name="switch_camera">Zmień kamerę</string>
+    <string name="no_hand">Brak dłoni</string>
+    <string name="no_permission">Bez dostępu do kamery aplikacja nie działa</string>
+    <string name="camera_error">Nie udało się uruchomić kamery</string>
+    <string name="stats">MediaPipe %1$.1f ms · MLP %2$.2f ms · %3$.0f FPS</string>
+</resources>
